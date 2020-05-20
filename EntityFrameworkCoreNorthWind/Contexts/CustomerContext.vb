@@ -20,7 +20,11 @@ Namespace NorthWindEntityFrameworkCore
         End Sub
 
         Public Overridable Property Customers() As DbSet(Of Customers)
-
+        ''' <summary>
+        ''' Connection string is obtained from app.config
+        ''' Logging is only enabled with the Visual Studio debugger
+        ''' </summary>
+        ''' <param name="optionsBuilder"></param>
         Protected Overrides Sub OnConfiguring(optionsBuilder As DbContextOptionsBuilder)
 
 #If DEBUG Then
@@ -34,7 +38,9 @@ Namespace NorthWindEntityFrameworkCore
 #End If
         End Sub
         ''' <summary>
-        ''' Configure logging.
+        ''' Configure logging for app
+        ''' https://docs.microsoft.com/en-us/ef/core/miscellaneous/logging?tabs=v3
+        ''' https://github.com/dotnet/EntityFramework.Docs/blob/master/entity-framework/core/miscellaneous/logging.md
         ''' </summary>
         Public Shared ReadOnly ConsoleLoggerFactory As ILoggerFactory = LoggerFactory.
             Create(Function(builder) As ILoggerFactory
@@ -44,6 +50,8 @@ Namespace NorthWindEntityFrameworkCore
                            End Function)
 
                        builder.AddConsole()
+
+                       Return Nothing
 
                    End Function)
         Protected Overrides Sub OnModelCreating(modelBuilder As ModelBuilder)
