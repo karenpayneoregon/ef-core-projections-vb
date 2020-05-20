@@ -1,4 +1,6 @@
 ﻿Imports System
+Imports System.Configuration
+Imports EntityFrameworkCoreNorthWind.Classes
 Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.EntityFrameworkCore.Metadata
 Imports Microsoft.Extensions.Logging
@@ -7,27 +9,30 @@ Namespace NorthWindEntityFrameworkCore
     Partial Public Class CustomerContext
         Inherits DbContext
 
+        Private ConnectionString As String
         Public Sub New()
+            Dim configurationHelper = New ConfigurationHelper
+            ConnectionString = configurationHelper.ConnectionString
         End Sub
 
         Public Sub New(options As DbContextOptions(Of CustomerContext))
             MyBase.New(options)
         End Sub
 
-        'Public Overridable Property ContactType() As DbSet(Of ContactType)
-        'Public Overridable Property Contacts() As DbSet(Of Contacts)
-        'Public Overridable Property Countries() As DbSet(Of Countries)
         Public Overridable Property Customers() As DbSet(Of Customers)
 
         Protected Overrides Sub OnConfiguring(optionsBuilder As DbContextOptionsBuilder)
-            If Not optionsBuilder.IsConfigured Then
-                optionsBuilder.
-                    UseSqlServer("Data Source=.\SQLEXPRESS;Initial Catalog=NorthWindAzureForInserts;Integrated Security=True").
-                    UseLoggerFactory(ConsoleLoggerFactory).
-                    EnableSensitiveDataLogging()
-            End If
-        End Sub
 
+#If DEBUG Then
+            If Not optionsBuilder.IsConfigured Then
+                optionsBuilder.UseSqlServer(ConnectionString).UseLoggerFactory(ConsoleLoggerFactory).EnableSensitiveDataLogging()
+            End If
+#Else
+            If Not optionsBuilder.IsConfigured Then
+                optionsBuilder.UseSqlServer(ConnectionString)
+            End If
+#End If
+        End Sub
         ''' <summary>
         ''' Configure logging.
         ''' </summary>
