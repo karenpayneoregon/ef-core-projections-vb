@@ -10,6 +10,34 @@ Microsoft TechNet article
 
 ![screenshot](assets/EF_Screen.png)
 
+```
+Public Class Form1
+    Private Async Sub ListCustomersButton_Click(sender As Object, e As EventArgs) Handles ListCustomersButton.Click
+        Dim customers As List(Of Customers) =
+                Await Operations.ReadCustomers()
+
+        CustomersComboBox.DataSource = customers
+
+    End Sub
+    Private Async Sub SingleCustomerButton_Click(sender As Object, e As EventArgs) Handles SingleCustomerButton.Click
+        Dim singleCustomer As Customers =
+                Await Operations.ReadCustomer(4)
+
+        ContactNameTextBox.Text = singleCustomer.ContactName
+
+    End Sub
+    Private Async Sub ListCustomerItemsButton_Click(sender As Object, e As EventArgs) Handles ListCustomerItemsButton.Click
+        Dim customerItem As List(Of CustomerItem) =
+                Await Operations.ReadCustomersProjected()
+
+        CustomerItemComboBox.DataSource = customerItem
+
+    End Sub
+
+End Class
+```
+
+
 #### Console logging
 ```
 Public Shared ReadOnly ConsoleLoggerFactory As ILoggerFactory = LoggerFactory.
