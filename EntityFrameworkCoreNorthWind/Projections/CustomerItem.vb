@@ -12,7 +12,7 @@ Namespace Projections
         Public Property ContactTypeIdentifier() As Integer?
 
         Public Overrides Function ToString() As String
-            Return CompanyName
+            Return $"{CompanyName} - {ContactName}"
         End Function
 
         Public Shared ReadOnly Property Projection() As Expression(Of Func(Of Customers, CustomerItem))

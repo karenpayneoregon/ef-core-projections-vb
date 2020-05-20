@@ -1,5 +1,4 @@
 ﻿Imports System
-Imports System.Configuration
 Imports EntityFrameworkCoreNorthWind.Classes
 Imports Microsoft.EntityFrameworkCore
 Imports Microsoft.EntityFrameworkCore.Metadata
@@ -10,6 +9,9 @@ Namespace NorthWindEntityFrameworkCore
         Inherits DbContext
 
         Private ConnectionString As String
+        ''' <summary>
+        ''' Get database connection string from app.config
+        ''' </summary>
         Public Sub New()
             Dim configurationHelper = New ConfigurationHelper
             ConnectionString = configurationHelper.ConnectionString
