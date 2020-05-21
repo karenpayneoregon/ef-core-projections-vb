@@ -4,6 +4,9 @@ Imports EntityFrameworkCoreNorthWind.Projections
 
 Public Class Form1
     Private Async Sub ListCustomersButton_Click(sender As Object, e As EventArgs) Handles ListCustomersButton.Click
+
+
+
         Dim customers As List(Of Customers) =
                 Await Operations.ReadCustomers()
 
@@ -31,6 +34,8 @@ Public Class Form1
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+
         TopMost = True
+
     End Sub
 End Class

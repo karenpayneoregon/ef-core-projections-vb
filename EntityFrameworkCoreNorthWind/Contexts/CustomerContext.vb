@@ -31,7 +31,10 @@ Namespace NorthWindEntityFrameworkCore
 
 #If DEBUG Then
             If Not optionsBuilder.IsConfigured Then
-                optionsBuilder.UseSqlServer(ConnectionString).UseLoggerFactory(ConsoleLoggerFactory).EnableSensitiveDataLogging()
+                optionsBuilder.
+                    UseSqlServer(ConnectionString).
+                    UseLoggerFactory(ConsoleLoggerFactory).
+                    EnableSensitiveDataLogging()
             End If
 #Else
             If Not optionsBuilder.IsConfigured Then
@@ -48,7 +51,10 @@ Namespace NorthWindEntityFrameworkCore
             Create(Function(builder) As ILoggerFactory
                        builder.AddFilter(
                            Function(category, level)
-                               Return category = DbLoggerCategory.Database.Command.Name AndAlso level = LogLevel.Information
+
+                               Return category = DbLoggerCategory.Database.Command.Name AndAlso
+                                      level = LogLevel.Information
+
                            End Function)
 
                        builder.AddConsole()
@@ -60,25 +66,26 @@ Namespace NorthWindEntityFrameworkCore
 
             modelBuilder.Entity(Of Customers)(
                 Sub(entity)
-                    entity.HasKey(Function(e) e.CustomerIdentifier).
+
+                    entity.HasKey(Function(customer) customer.CustomerIdentifier).
                                                  HasName("PK_Customers_1")
 
-                    entity.Property(Function(e) e.ModifiedDate).
+                    entity.Property(Function(customer) customer.ModifiedDate).
                                                  HasDefaultValueSql("(getdate())")
 
-                    entity.HasOne(Function(d) d.Contact).
-                                                 WithMany(Function(p) p.Customers).
-                                                 HasForeignKey(Function(d) d.ContactId).
+                    entity.HasOne(Function(customer) customer.Contact).
+                                                 WithMany(Function(contacts) contacts.Customers).
+                                                 HasForeignKey(Function(customer) customer.ContactId).
                                                  HasConstraintName("FK_Customers_Contacts")
 
-                    entity.HasOne(Function(d) d.ContactTypeNavigation).
-                                                 WithMany(Function(p) p.Customers).
-                                                 HasForeignKey(Function(d) d.ContactTypeIdentifier).
+                    entity.HasOne(Function(customer) customer.ContactTypeNavigation).
+                                                 WithMany(Function(contactType) contactType.Customers).
+                                                 HasForeignKey(Function(customer) customer.ContactTypeIdentifier).
                                                  HasConstraintName("FK_Customers_ContactType")
 
-                    entity.HasOne(Function(d) d.CountryIdentifierNavigation).
-                                                 WithMany(Function(p) p.Customers).
-                                                 HasForeignKey(Function(d) d.CountryIdentifier).
+                    entity.HasOne(Function(customer) customer.CountryIdentifierNavigation).
+                                                 WithMany(Function(countries) countries.Customers).
+                                                 HasForeignKey(Function(customer) customer.CountryIdentifier).
                                                  HasConstraintName("FK_Customers_Countries")
                 End Sub)
 
