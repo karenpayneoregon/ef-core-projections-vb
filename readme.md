@@ -4,6 +4,7 @@ Contains code samples for Entity Framework Core
 
 * Console logging
 * Projections
+* Asynchronous operations
 * Extension methods
 
 Microsoft TechNet article
