@@ -7,7 +7,9 @@ Contains code samples for Entity Framework Core
 * Asynchronous operations
 * Extension methods
 
-Microsoft TechNet article
+[Microsoft TechNet article](https://social.technet.microsoft.com/wiki/contents/articles/53887.entity-framework-core-3-windows-forms-vb-net.aspx)
+
+> Currently a work in progress
 
 ![screenshot](assets/EF_Screen.png)
 

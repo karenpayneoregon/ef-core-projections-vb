@@ -32,7 +32,8 @@ Namespace Classes
                 End Try
 
                 If config IsNot Nothing Then
-                    Return $"Data Source={GetAppSetting(config, "DatabaseServer")};Initial Catalog={GetAppSetting(config, "DefaultCatalog")};" &
+                    Return $"Data Source={GetAppSetting(config, "DatabaseServer")};" &
+                           $"Initial Catalog={GetAppSetting(config, "DefaultCatalog")};" &
                            "Integrated Security=True"
                 Else
                     Return ""
