@@ -2,6 +2,9 @@
 Imports EntityFrameworkCoreNorthWind.NorthWindEntityFrameworkCore
 Imports EntityFrameworkCoreNorthWind.Projections
 Imports Microsoft.EntityFrameworkCore
+Imports Microsoft.EntityFrameworkCore.EntityTypeExtensions
+Imports Microsoft.EntityFrameworkCore.Metadata
+Imports Microsoft.EntityFrameworkCore.Metadata.Internal
 
 Namespace Classes
 
@@ -45,6 +48,28 @@ Namespace Classes
                 End Function)
 
         End Function
+        ''' <summary>
+        ''' Traversing entity model, not part of article
+        ''' </summary>
+        Public Shared Sub Experiments()
 
+            Using context As New CustomerContext
+
+                Dim typeList = context.Model.GetEntityTypes().Select(Function(entityType) entityType.ClrType).ToList()
+
+                For Each type As Type In typeList
+
+                    Console.WriteLine($"{type.Name}")
+
+                    Dim entityType = context.Model.FindEntityType(type)
+
+                    For Each prop As IProperty In entityType.GetProperties()
+                        Console.WriteLine($"   {prop.GetColumnName()}, {prop.GetColumnType()}, {prop.IsNullable}")
+                    Next
+
+                Next
+
+            End Using
+        End Sub
     End Class
 End Namespace
