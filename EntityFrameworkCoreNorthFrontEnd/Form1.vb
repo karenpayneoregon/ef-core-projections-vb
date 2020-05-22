@@ -33,11 +33,7 @@ Public Class Form1
     ''' <param name="e"></param>
     Private Sub Form1_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
-        'TopMost = True
+        TopMost = True
 
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Operations.Experiments()
     End Sub
 End Class

@@ -29,7 +29,6 @@ Partial Class Form1
         Me.CustomersComboBox = New System.Windows.Forms.ComboBox()
         Me.ContactNameTextBox = New System.Windows.Forms.TextBox()
         Me.CustomerItemComboBox = New System.Windows.Forms.ComboBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'ListCustomersButton
@@ -84,21 +83,11 @@ Partial Class Form1
         Me.CustomerItemComboBox.Size = New System.Drawing.Size(210, 21)
         Me.CustomerItemComboBox.TabIndex = 5
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(319, 111)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 6
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(416, 146)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(416, 119)
         Me.Controls.Add(Me.CustomerItemComboBox)
         Me.Controls.Add(Me.ContactNameTextBox)
         Me.Controls.Add(Me.CustomersComboBox)
@@ -123,5 +112,4 @@ Partial Class Form1
     Friend WithEvents CustomersComboBox As ComboBox
     Friend WithEvents ContactNameTextBox As TextBox
     Friend WithEvents CustomerItemComboBox As ComboBox
-    Friend WithEvents Button1 As Button
 End Class

@@ -2,6 +2,9 @@
 Imports Microsoft.EntityFrameworkCore.Infrastructure
 
 Namespace Classes
+    ''' <summary>
+    ''' Not part of this article
+    ''' </summary>
     Public NotInheritable Class AttributeReader
 
         Private Sub New()
@@ -21,4 +24,4 @@ Namespace Classes
         End Function
 
     End Class
-End NameSpace
+End Namespace

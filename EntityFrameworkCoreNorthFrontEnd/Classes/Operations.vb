@@ -2,7 +2,6 @@
 Imports EntityFrameworkCoreNorthWind.NorthWindEntityFrameworkCore
 Imports EntityFrameworkCoreNorthWind.Projections
 Imports Microsoft.EntityFrameworkCore
-Imports Microsoft.EntityFrameworkCore.EntityTypeExtensions
 Imports Microsoft.EntityFrameworkCore.Metadata
 Imports Microsoft.EntityFrameworkCore.Metadata.Internal
 
@@ -65,10 +64,14 @@ Namespace Classes
 
                     For Each prop As IProperty In entityType.GetProperties()
                         Console.WriteLine($"   {prop.GetColumnName()}, {prop.GetColumnType()}, {prop.IsNullable}")
+                        If prop.IsForeignKey() Then
+                            Dim foreignKey As IForeignKey = entityType.FindForeignKeys(prop).Select(Function(x) x).FirstOrDefault()
+                            If foreignKey IsNot Nothing Then
+                                Console.WriteLine($"      {foreignKey.PrincipalEntityType}, {foreignKey.ToDebugString(False)}")
+                            End If
+                        End If
                     Next
-
                 Next
-
             End Using
         End Sub
     End Class
