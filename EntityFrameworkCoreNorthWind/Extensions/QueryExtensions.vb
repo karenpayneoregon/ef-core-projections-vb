@@ -6,7 +6,7 @@ Namespace Extensions
 
     Public Module QueryExtensions
         <Extension>
-        Public Function IncludeContactCountry(ByVal query As IQueryable(Of Customers)) As IQueryable(Of Customers)
+        Public Function IncludeContactCountry(query As IQueryable(Of Customers)) As IQueryable(Of Customers)
             Return query.
                 Include(Function(customer) customer.Contact).
                 Include(Function(customer) customer.ContactTypeNavigation).
@@ -14,7 +14,7 @@ Namespace Extensions
 
         End Function
         <Extension>
-        Public Function IncludeContactCountry(ByVal query As IQueryable(Of Customers), identifier As Integer) As Task(Of Customers)
+        Public Function IncludeContactCountry(query As IQueryable(Of Customers), identifier As Integer) As Task(Of Customers)
             Return query.
                 Include(Function(customer) customer.Contact).
                 Include(Function(customer) customer.ContactTypeNavigation).

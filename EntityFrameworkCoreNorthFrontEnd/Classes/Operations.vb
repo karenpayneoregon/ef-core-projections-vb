@@ -45,5 +45,6 @@ Namespace Classes
                 End Function)
 
         End Function
+
     End Class
 End Namespace

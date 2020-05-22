@@ -1,6 +1,4 @@
-﻿
-
-Public Class Customer
+﻿Public Class Customer
     Public Property CustomerIdentifier() As Integer
     Public Property CompanyName() As String
     Public Property ContactName() As String
